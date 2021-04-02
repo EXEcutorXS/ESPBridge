@@ -1,13 +1,8 @@
 #include <Arduino.h>
 
 #include <ESP8266WiFi.h>
-#include <ESP8266WiFiMulti.h>
-
 #include <ESP8266HTTPClient.h>
-
 #include <WiFiClient.h>
-
-ESP8266WiFiMulti WiFiMulti;
 
 String command;
 String data;
@@ -26,12 +21,9 @@ bool online=true;
 void
 setup ()
 {
-
   Serial.begin (115200);
   //Serial.setDebugOutput(true);
-
   WiFi.mode (WIFI_STA);
-  WiFiMulti.addAP("SSID", "PASSWORD");
 }
 
 void
@@ -81,7 +73,7 @@ loop ()
         Serial.printf ("Online Check: [HTTP] GET... code: %d\n", httpCode);
         if (httpCode == HTTP_CODE_OK
       || httpCode == HTTP_CODE_MOVED_PERMANENTLY
-      || thhpCode == 301)
+      || httpCode == 301)
     {
       Serial.println("We are online...");
       online=true;
